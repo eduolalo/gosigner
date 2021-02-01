@@ -6,8 +6,8 @@ import (
 	"encoding/base64"
 )
 
-// URLSign genera una firma en string con formato Base64 RawURLEncoding a partir de la infromación
-// que se la pasa utilizando SHA-256
+// URLSign genera una firma en string con formato Base64 apta para el envío en métodos http, se usa
+// la infromación que se la pasa utilizando SHA-256
 func URLSign(data, key []byte) string {
 
 	mac := hmac.New(sha256.New, key)
