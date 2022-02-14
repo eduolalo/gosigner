@@ -1,3 +1,3 @@
 module github.com/kalmecak/gosigner
 
-go 1.15
+go 1.16
