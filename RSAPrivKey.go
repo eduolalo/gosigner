@@ -5,7 +5,6 @@ import (
 	"crypto/x509"
 	"encoding/pem"
 	"errors"
-	"log"
 )
 
 // RSAPrivKey Genera un rsa.PrivateKey a partir de un arreglo de bytes que represente un certificado.pem
@@ -15,16 +14,12 @@ func RSAPrivKey(s []byte) (key rsa.PrivateKey, err error) {
 
 	p, _ := pem.Decode(s)
 	if p == nil {
+
 		return key, errors.New("no se pudo decodificar el certificado")
 	}
 	if p.Type != "RSA PRIVATE KEY" {
 
 		err = errors.New("el certificado no es RSA")
-		return
-	}
-
-	if err != nil {
-
 		return
 	}
 
@@ -38,7 +33,6 @@ func RSAPrivKey(s []byte) (key rsa.PrivateKey, err error) {
 		}
 	}
 
-	log.Printf("parsed: %+v", parsed)
 	switch kind := parsed.(type) {
 	case *rsa.PrivateKey:
 		key = *kind
